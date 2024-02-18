@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>What to Watch?</title>
+    <title>The Movie Cinema</title>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -49,11 +49,11 @@
     />
 
     <script type="text/javascript">
-      var films = {{suggestions|tojson}};
+      var films = JSON.parse('{{suggestions|tojson}}');
       $(document).ready(function(){
         $("#myModal").modal('show');
       });
-    </script>
+    </script>    
   </head>
 
   <body id="content" style="font-family: 'Noto Sans JP', sans-serif">
@@ -129,7 +129,7 @@
               class="modal-header"
               style="background-color: #e50914; color: white"
             >
-              <h5 class="modal-title" id="exampleModalLabel3">Welcome!</h5>
+              <h5 class="modal-title" id="exampleModalLabel3">Hey there!</h5>
               <button
                 type="button"
                 class="close"
@@ -143,7 +143,7 @@
               <p>
                 If you can't find the movie you're searching for through
                 auto-suggestions while typing, there's no need to worry. Simply
-                type the name of the movie and press "Enter". Even if you make
+                type the name of the movie and press "enter". Even if you make
                 some typos, it should still work fine.
               </p>
             </div>
