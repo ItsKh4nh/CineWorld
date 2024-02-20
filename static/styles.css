@@ -15,11 +15,125 @@
   background: #b30000; 
 }
 
+.form-group.shadow-textarea  {
+	margin-top: 30px;
+	text-align: center;
+	color: white;
+}
+
+.btn.btn-primary.btn-block.movie-button {
+	background-color: #e50914;
+	text-align: center;
+	border-color: #e50914;
+	width: 120px;
+}
+
+.modal-header {
+	background-color: #e50914;
+	color: white;
+}
+
+#name {
+	text-transform: uppercase;
+	font-family: 'Rowdies', cursive;
+}
+
+.poster-lg {
+	border-radius: 40px;
+	margin-left: 90px;
+}
+
+.poster-sm {
+	border-radius: 40px;
+	margin-bottom: 5px;
+}
+
+#details {
+	color: white;
+}
+
+#overview{
+	max-width: 90%;
+}
+
+.modal-header {
+	background-color: #e50914;
+	color: white;
+}
+
+.modal-title {
+	color: white;
+}
+
+.close {
+	color: white;
+}
+
+.profile-pic {
+	width: 250px;
+	height: 400px;
+	border-radius: 10px;
+}
+
+.castcard {
+	width: 14rem;
+}
+
+.card-body {
+	font-family: 'Rowdies', cursive;
+	font-size: 18px;
+}
+
 .movie {
+  text-align: center;
 	color: #fff;
 	margin-left: auto;
 	margin-right: auto;
 	resize: none;
+}
+
+.card-title {
+	font-family: 'Rowdies', cursive;
+	font-size: 18px;
+}
+
+.card-title span {
+	color: #756969;
+	font-size: 18px;
+}
+
+.movie h2 {
+	font-family: 'Rowdies', cursive;
+}
+
+.user-reviews {
+	font-family: 'Rowdies', cursive;
+	color: white;
+}
+
+.table-bordered {
+	color: white;
+	border-color: white;
+}
+
+.table-bordered thead th {
+	width: 75%;
+}
+
+.table-bordered tbody tr {
+	background-color: #e5091485;
+}
+
+.table-bordered tbody td {
+	text-align: center;
+}
+
+.positive-sentiment {
+	color: #128515;
+}
+
+.negative-sentiment {
+	color: #128534;
 }
 
 .movie-content {

@@ -49,7 +49,7 @@
     />
 
     <script type="text/javascript">
-      var films = JSON.parse('{{suggestions|tojson}}');
+      var films = {{suggestions|tojson}};
       $(document).ready(function(){
         $("#myModal").modal('show');
       });
@@ -62,7 +62,6 @@
         <center><h1 class="app-title">The Movie Cinema</h1></center>
         <div
           class="form-group shadow-textarea"
-          style="margin-top: 30px; text-align: center; color: white"
         >
           <input
             type="text"
@@ -85,12 +84,6 @@
         <div class="form-group" style="text-align: center">
           <button
             class="btn btn-primary btn-block movie-button"
-            style="
-              background-color: #e50914;
-              text-align: center;
-              border-color: #e50914;
-              width: 120px;
-            "
             disabled="true"
           >
             Enter</button
@@ -127,7 +120,6 @@
           <div class="modal-content">
             <div
               class="modal-header"
-              style="background-color: #e50914; color: white"
             >
               <h5 class="modal-title" id="exampleModalLabel3">Hey there!</h5>
               <button

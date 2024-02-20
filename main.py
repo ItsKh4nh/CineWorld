@@ -11,9 +11,9 @@ import requests
 from datetime import date, datetime
 
 # load the nlp model and tfidf vectorizer from disk
-filename = "nlp_model.pkl"
+filename = "preprocessing/nlp_model.pkl"
 clf = pickle.load(open(filename, "rb"))
-vectorizer = pickle.load(open("transform.pkl", "rb"))
+vectorizer = pickle.load(open("preprocessing/transform.pkl", "rb"))
 
 
 # converting list of string to list (eg. "["abc","def"]" to ["abc","def"])
@@ -33,7 +33,7 @@ def convert_to_list_num(my_list):
 
 
 def get_suggestions():
-    data = pd.read_csv("main_data.csv")
+    data = pd.read_csv("datasets/main_data.csv")
     return list(data["movie_title"].str.capitalize())
 
 
