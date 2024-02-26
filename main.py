@@ -1,13 +1,10 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, render_template, request, redirect, url_for
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+from flask import Flask, render_template, request
 import json
 import bs4 as bs
 import urllib.request
 import pickle
-import requests
 from datetime import date, datetime
 
 # load the nlp model and tfidf vectorizer from disk
@@ -47,8 +44,8 @@ def home():
     return render_template("home.html", suggestions=suggestions)
 
 
-@app.route("/populate-matches", methods=["POST"])
-def populate_matches():
+@app.route("/popular-matches", methods=["POST"])
+def popular_matches():
     # getting data from AJAX request
     res = json.loads(request.get_data("data"))
     movies_list = res["movies_list"]
@@ -102,9 +99,6 @@ def recommend():
     rec_year = request.form["rec_year"]
     rec_vote = request.form["rec_vote"]
     rec_ids = request.form["rec_ids"]
-
-    # get movie suggestions for auto complete
-    suggestions = get_suggestions()
 
     # call the convert_to_list function for every string that needs to be converted to list
     rec_movies_org = convert_to_list(rec_movies_org)

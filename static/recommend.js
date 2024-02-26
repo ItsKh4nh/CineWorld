@@ -1,4 +1,3 @@
-// Replace 'YOUR_API_KEY' below with your API key retrieved from https://www.themoviedb.org
 var myAPI = '6b494c120a5b63392092caf68cfa7687'  // global string to be consistent with future usages elsewhere
 $(function() {
   $('#movie_list').css('display','none');
@@ -105,7 +104,7 @@ function load_details(my_api_key,search,isQuerySearch){
           beforeSend: function() {
             $("#loader").fadeIn();
           },
-          url:"/populate-matches",
+          url:"/popular-matches",
           dataType: 'html',
           complete: function(){
             $("#loader").delay(1000).fadeOut();

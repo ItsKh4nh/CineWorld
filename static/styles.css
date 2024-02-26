@@ -24,7 +24,7 @@
 	color: white;
 }
 
-.form-group.shadow-textarea  {
+.searchbox  {
 	margin-top: 30px;
 	text-align: center;
 	color: white;
@@ -34,7 +34,15 @@
 	border-radius: 20px;
 }
 
-.btn.btn-primary.btn-block.movie-button {
+.card-text {
+	font-size: 15px;
+	background: #000000b8;
+	color: white;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.btn.btn-block.movie-button {
 	background-color: #e50914;
 	text-align: center;
 	border-color: #e50914;
