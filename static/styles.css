@@ -125,7 +125,7 @@
 }
 
 .table-bordered tbody td {
-	text-align: center;
+	text-align: justify;
 }
 
 .table td {
@@ -357,6 +357,9 @@ h6 {
 	transition: all 0.75s ease;
 }
 
+.cast-info{
+	text-align: justify;
+}
 
 .cast-img:hover {
 	filter: brightness(50%);

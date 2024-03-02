@@ -8,9 +8,8 @@ import pickle
 from datetime import date, datetime
 import requests
 
-# load the nlp model and tfidf vectorizer from disk
-filename = "preprocessing/nlp_model.pkl"
-clf = pickle.load(open(filename, "rb"))
+# Load mô hình NLP và TF-IDF vectorizer
+clf = pickle.load(open("preprocessing/nlp_model.pkl", "rb"))
 vectorizer = pickle.load(open("preprocessing/transform.pkl", "rb"))
 
 
