@@ -1,3 +1,12 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rowdies&display=swap');
+/* Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+/* Auto Complete */
+@import url('https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css');
+
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -188,6 +197,14 @@ h1 {
 	cursor: pointer;
 }
 
+.app-title{
+	font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #e50914;
+	font-weight: bold;
+	margin-top: 30px;
+	text-shadow: #000000 0px 0px 13px;
+
+}
 .app-title:hover {
 	cursor: pointer;
 }
