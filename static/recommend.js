@@ -52,7 +52,7 @@ function recommendcard(id){
 }
 
 
-// tải thông tin  chi tiết của phim sử dụng API (dựa trên tiêu đề của phim)
+// tải thông tin chi tiết của phim sử dụng API (dựa trên tiêu đề của phim)
 function load_details(my_api_key,search,isQuerySearch){
   if(isQuerySearch) {
     url = 'https://api.themoviedb.org/3/search/movie?api_key='+my_api_key+'&query='+search;
@@ -127,7 +127,7 @@ function load_details(my_api_key,search,isQuerySearch){
   });
 }
 
-// lấy thông tin chi tiết của phim dựa trên id pjim
+// lấy thông tin chi tiết của phim dựa trên id phim
 function get_movie_details(movie_id,my_api_key,movie_title,movie_title_org) {
   $.ajax({
     type:'GET',
@@ -142,7 +142,7 @@ function get_movie_details(movie_id,my_api_key,movie_title,movie_title_org) {
   });
 }
 
-// truyền thông tin đến file Python(Flask) để hiển thị và crawl các bình luận phim sử dụng imdb id
+// truyền thông tin đến file Python(Flask) để hiển thị
 function show_details(movie_details,movie_title,my_api_key,movie_id,movie_title_org){
   var imdb_id = movie_details.imdb_id;
   var poster;

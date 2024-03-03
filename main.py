@@ -138,7 +138,7 @@ def recommend():
     for i in range(len(cast_chars)):
         cast_chars[i] = cast_chars[i].replace(r"\n", "\n").replace(r"\"", '"')
 
-    # Kết hợp nhiều danh sách thành một từ điển, sau đó có thể được truyền vào tệp HTML để xử lý dễ dàng hơn và thứ tự thông tin sẽ được bảo toàn
+    # Kết hợp thành một từ điển, sau đó có thể được truyền vào tệp HTML để xử lý dễ dàng hơn
     movie_cards = {
         rec_posters[i]: [
             rec_movies[i],
