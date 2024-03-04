@@ -142,7 +142,7 @@ function get_movie_details(movie_id,my_api_key,movie_title,movie_title_org) {
   });
 }
 
-// truyền thông tin đến file Python(Flask) để hiển thị
+// truyền thông tin đến Python(Flask) để hiển thị
 function show_details(movie_details,movie_title,my_api_key,movie_id,movie_title_org){
   var imdb_id = movie_details.imdb_id;
   var poster;
