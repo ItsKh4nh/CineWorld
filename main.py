@@ -183,7 +183,9 @@ def recommend():
                 movie_review_list = np.array([reviews.string])
                 movie_vector = vectorizer.transform(movie_review_list)
                 pred = clf.predict(movie_vector)
-                reviews_status.append("Positive" if pred else "Negative")
+                reviews_status.append(
+                    "Positive" if pred[0] == "positive" else "Negative"
+                )
 
         movie_rel_date = ""
         curr_date = ""
