@@ -21,7 +21,7 @@ $(function() {
     $('html, body').animate({scrollTop:0}, 'slow');
   });
 
-  $('.app-title').click(function(){
+  $('.logo').click(function(){
     window.location.href = '/';
   })
 
