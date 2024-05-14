@@ -1,13 +1,12 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, render_template, request, json, jsonify
+from flask import Flask, render_template, request, json
 import json
 import bs4 as bs
 import urllib.request
 import pickle
 from datetime import date, datetime
 import requests
-from textblob import TextBlob
 
 # Load mô hình NLP và TF-IDF vectorizer
 clf = pickle.load(open("preprocessing/nlp_model.pkl", "rb"))
