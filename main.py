@@ -1,12 +1,13 @@
 import numpy as np
 import pandas as pd
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template, request, json, jsonify
 import json
 import bs4 as bs
 import urllib.request
 import pickle
 from datetime import date, datetime
 import requests
+from textblob import TextBlob
 
 # Load mô hình NLP và TF-IDF vectorizer
 clf = pickle.load(open("preprocessing/nlp_model.pkl", "rb"))
@@ -52,7 +53,7 @@ def get_suggestions():
 @app.route("/home")
 def home():
     suggestions = get_suggestions()
-    return render_template("home.html", suggestions=suggestions)
+    return render_template("home.html", suggestions=suggestions, sort_order="desc")
 
 
 @app.route("/data_collect", methods=["POST"])
@@ -169,23 +170,38 @@ def recommend():
     if imdb_id != "":
         # Sử dụng web scraping để crawl về những dữ liệu về bình luận của người xem từ IMDB
         sauce = urllib.request.urlopen(
-            "https://www.imdb.com/title/{}/reviews?ref_=tt_ov_rt".format(imdb_id)
+            "https://www.imdb.com/title/{}/reviews?ref_=tt_urv".format(imdb_id)
         ).read()
-        soup = bs.BeautifulSoup(sauce, "lxml")
+        soup = bs.BeautifulSoup(sauce, "html.parser")
         soup_result = soup.find_all("div", {"class": "text show-more__control"})
 
         reviews_list = []  # Danh sách các review
         reviews_status = []  # Trạng thái của các review
-        for reviews in soup_result:
-            if reviews.string:
-                reviews_list.append(reviews.string)
+        for reviews in soup_result[:10]:
+            reviews_text = reviews.get_text(strip=True)
+            if reviews_text:
+                reviews_list.append(reviews_text)
                 # Sử dụng mô hình học máy để phân tích
-                movie_review_list = np.array([reviews.string])
+                movie_review_list = np.array([reviews_text])
                 movie_vector = vectorizer.transform(movie_review_list)
                 pred = clf.predict(movie_vector)
                 reviews_status.append(
                     "Positive" if pred[0] == "positive" else "Negative"
                 )
+        positive_count = reviews_status.count("Positive")
+        total_reviews = len(reviews_status)
+        positive_ratio = positive_count / total_reviews * 100
+
+        if positive_ratio <= 20:
+            sentiment = "Very Negative"
+        elif 20 < positive_ratio <= 40:
+            sentiment = "Mostly Negative"
+        elif 40 < positive_ratio <= 60:
+            sentiment = "Mixed"
+        elif 60 < positive_ratio <= 80:
+            sentiment = "Mostly Positive"
+        else:
+            sentiment = "Very Positive"
 
         movie_rel_date = ""
         curr_date = ""
@@ -214,6 +230,7 @@ def recommend():
             genres=genres,
             movie_cards=movie_cards,
             reviews=movie_reviews,
+            sentiment=sentiment,
             casts=casts,
             cast_details=cast_details,
         )
@@ -234,6 +251,7 @@ def recommend():
             genres=genres,
             movie_cards=movie_cards,
             reviews="",
+            sentiment="",
             casts=casts,
             cast_details=cast_details,
         )

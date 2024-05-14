@@ -185,12 +185,12 @@ h1 {
 .fa-arrow-up {
 	font-size: 1.5em;
 	color: #ffffff;
-    background: #e50914;
-    padding: 10px;
+  background: #e50914;
+  padding: 10px;
 	border-radius: 50%;
 	float: right;
-    bottom: 25px;
-    position: relative;
+  bottom: 25px;
+  position: relative;
 }
 
 .fa-arrow-up:hover {
@@ -420,4 +420,35 @@ h6 {
 
 .close {
 	color: white;
+}
+
+#button-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+#sentiment {
+	font-weight: 1000;
+}
+
+.sentiment-very-negative {
+	color: red;
+}
+
+.sentiment-mostly-negative {
+	color: #ffa700;
+}
+
+.sentiment-mixed {
+	color: yellow;
+}
+
+.sentiment-mostly-positive {
+	color: #a3ff00;
+}
+
+.sentiment-very-positive {
+	color: green;
 }

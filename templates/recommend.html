@@ -52,6 +52,20 @@
           <h6 id="date">RELEASE DATE: &nbsp;{{release_date}}</h6>
           <h6 id="runtime">RUNTIME: &nbsp;{{runtime}}</h6>
           <h6 id="status">STATUS: &nbsp;{{status}}</h6>
+          <h6 id="sentiment" class="
+                {% if sentiment == 'Very Negative' %}
+                    sentiment-very-negative
+                {% elif sentiment == 'Mostly Negative' %}
+                    sentiment-mostly-negative
+                {% elif sentiment == 'Mixed' %}
+                    sentiment-mixed
+                {% elif sentiment == 'Mostly Positive' %}
+                    sentiment-mostly-positive
+                {% elif sentiment == 'Very Positive' %}
+                    sentiment-very-positive
+                {% endif %}
+            ">
+                SENTIMENTS: &nbsp;{{sentiment}}
         </div>
       </div>
     </div>
@@ -255,6 +269,18 @@
         <center><h2>Multiple matches found</h2></center>
       </div>
 
+      <div id="button-container">
+        <button id="sort-button" class="btn btn-primary" data-sort-order="{{ sort_order }}">
+          {% if sort_order == "desc" %}
+            Sort Descending
+          {% elif sort_order == "asc" %}
+            Sort Ascending
+          {% else %}
+            Sort by Vote Average
+          {% endif %}
+        </button>
+      </div>
+
       <div class="movie-content">
         {% for poster, details in movie_cards.items() if not movie_cards.hidden
         %}
@@ -313,6 +339,6 @@
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
-    ></script>
+    ></script>  
   </body>
 </html>

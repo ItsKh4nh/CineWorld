@@ -1,29 +1,47 @@
-var myAPI = '6b494c120a5b63392092caf68cfa7687'  // TMDB API key
+var myAPI = '6b494c120a5b63392092caf68cfa7687'; // TMDB API key
+
 $(function() {
-  $('#movie_list').css('display','none');
+  $('#movie_list').css('display', 'none');
   $('#autoComplete').blur(function() {
-    $('#movie_list').css('display','none');
+    $('#movie_list').css('display', 'none');
   });
+
   // Nút Enter sẽ bị vô hiệu hóa cho đến khi chúng ta gõ gì đó vào trong ô tìm kiếm
   const source = document.getElementById('autoComplete');
   const inputHandler = function(e) {
-    $('#movie_list').css('display','block');
-    if(e.target.value==""){
+    $('#movie_list').css('display', 'block');
+    if (e.target.value == "") {
       $('.movie-button').attr('disabled', true);
-    }
-    else{
+    } else {
       $('.movie-button').attr('disabled', false);
     }
   }
   source.addEventListener('input', inputHandler);
 
+  source.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      $('.movie-button').click();
+    }
+  });
+
   $('.fa-arrow-up').click(function(){
     $('html, body').animate({scrollTop:0}, 'slow');
   });
 
+  $('.logo').hover(
+    function() {
+      $(this).css('cursor', 'pointer');
+    },
+    function() {
+      $(this).css('cursor', 'auto');
+    }
+  );
+  
+  // Điều hướng khi click vào logo
   $('.logo').click(function(){
     window.location.href = '/';
-  })
+  });
+  
 
   $('.movie-button').on('click',function(){
     var my_api_key = myAPI;
@@ -330,3 +348,37 @@ function get_movie_cast(movie_id,my_api_key){
     });
     return {rec_movies:rec_movies,rec_movies_org:rec_movies_org,rec_posters:rec_posters,rec_year:rec_year,rec_vote:rec_vote,rec_ids:rec_ids};
   }
+
+  function sortMovieCards() {
+    var movieCardsContainer = document.querySelector(".movie-content");
+    var movieCards = movieCardsContainer.querySelectorAll(".card");
+
+    var movieCardsArray = Array.from(movieCards);
+
+    var sortOrder = document.getElementById("sort-button").getAttribute("data-sort-order");
+
+    movieCardsArray.sort(function(a, b) {
+        var voteA = parseFloat(a.querySelector('.fa-star').textContent);
+        var voteB = parseFloat(b.querySelector('.fa-star').textContent);
+      
+        if (sortOrder === "desc") {
+            return voteB - voteA;
+        } else {
+            return voteA - voteB;
+        }
+    });
+
+    movieCardsContainer.innerHTML = "";
+
+    movieCardsArray.forEach(function(card) {
+        movieCardsContainer.appendChild(card);
+    });
+
+    var newSortOrder = sortOrder === "desc" ? "asc" : "desc";
+    document.getElementById("sort-button").setAttribute("data-sort-order", newSortOrder);
+
+    var buttonText = newSortOrder === "desc" ? "Sort Descending" : "Sort Ascending";
+    document.getElementById("sort-button").textContent = buttonText;
+}
+
+document.getElementById("sort-button").addEventListener("click", sortMovieCards);
