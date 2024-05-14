@@ -36,7 +36,14 @@ $(function() {
       $(this).css('cursor', 'auto');
     }
   );
-  
+
+  $('#recommend-button-jump').click(function() {
+    var recommendedMoviesPosition = $('.movie-rec').offset().top;
+    $('html, body').animate({
+      scrollTop: recommendedMoviesPosition
+    }, 1000);
+  });
+
   // Điều hướng khi click vào logo
   $('.logo').click(function(){
     window.location.href = '/';
@@ -237,8 +244,8 @@ function show_details(movie_details,movie_title,my_api_key,movie_id,movie_title_
       $('.results').html(response);
       $('#autoComplete').val('');
       $('.footer').css('position','absolute');
-      if ($('.movie-content')) {
-        $('.movie-content').after('<div class="gototop"><i title="Go to Top" class="fa fa-arrow-up"></i></div>');
+      if ($('.col-md-12')) {
+        $('.col-md-12').after('<div class="gototop"><i title="Go to Top" class="fa fa-arrow-up"></i></div>');
       }
       $(window).scrollTop(0);
     }
@@ -382,3 +389,4 @@ function get_movie_cast(movie_id,my_api_key){
 }
 
 document.getElementById("sort-button").addEventListener("click", sortMovieCards);
+

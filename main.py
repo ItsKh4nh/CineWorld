@@ -176,7 +176,7 @@ def recommend():
 
         reviews_list = []  # Danh sách các review
         reviews_status = []  # Trạng thái của các review
-        for reviews in soup_result[:10]:
+        for reviews in soup_result:
             reviews_text = reviews.get_text(strip=True)
             if reviews_text:
                 reviews_list.append(reviews_text)
@@ -191,13 +191,13 @@ def recommend():
         total_reviews = len(reviews_status)
         positive_ratio = positive_count / total_reviews * 100
 
-        if positive_ratio <= 20:
+        if positive_ratio < 20:
             sentiment = "Very Negative"
-        elif 20 < positive_ratio <= 40:
+        elif 20 <= positive_ratio < 40:
             sentiment = "Mostly Negative"
-        elif 40 < positive_ratio <= 60:
+        elif 40 <= positive_ratio < 60:
             sentiment = "Mixed"
-        elif 60 < positive_ratio <= 80:
+        elif 60 <= positive_ratio < 80:
             sentiment = "Mostly Positive"
         else:
             sentiment = "Very Positive"

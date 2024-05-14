@@ -93,16 +93,16 @@
 	font-size: 18px;
 }
 
-.movie {
+.movie, .movie-rec {
   text-align: center;
-	color: #fff;
-	margin-left: auto;
-	margin-right: auto;
-	resize: none;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
 }
 
-.movie h2 {
-	font-family: 'Rowdies', cursive;
+.movie h2, .movie-rec h2 {
+  font-family: 'Rowdies', cursive;
 }
 
 .movie-content {
@@ -451,4 +451,10 @@ h6 {
 
 .sentiment-very-positive {
 	color: green;
+}
+
+.col-md-12{
+	margin: 0 auto; 
+	margin-top: 25px;
+	margin-bottom: 50px;
 }

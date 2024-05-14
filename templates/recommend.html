@@ -124,6 +124,10 @@
     </div>
     {% endfor %}
 
+    <div id="button-container">
+      <button id="recommend-button-jump" class="btn btn-warning">Jump to Recommended Movies</button>
+    </div>
+
     <div class="container">
       {% if casts|length > 1 %}
       <div class="movie">
@@ -167,7 +171,7 @@
       <center>
         {% if reviews %}
         <h2 class="user-reviews">USER REVIEWS</h2>
-        <div class="col-md-12" style="margin: 0 auto; margin-top: 25px">
+        <div class="col-md-12">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -211,7 +215,7 @@
 
       {% if movie_cards|length > 1 %}
 
-      <div class="movie">
+      <div class="movie-rec">
         <center>
           <h2>RECOMMENDED MOVIES FOR YOU</h2>
           <h5>(Click any of the movies to get recommendation)</h5>
