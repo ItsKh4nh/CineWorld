@@ -32,16 +32,9 @@ def convert_to_list_num(my_list):
 app = Flask(__name__)
 
 
-def get_suggestions():
-    data = pd.read_csv("datasets/main_data.csv")
-    return list(data["movie_title"].str.capitalize())
-
-
 @app.route("/")
-@app.route("/home")
-def home():
-    suggestions = get_suggestions()
-    return render_template("home.html", suggestions=suggestions, sort_order="desc")
+def index():
+    return render_template("home.html", sort_order="desc")
 
 
 @app.route("/data_collect", methods=["POST"])

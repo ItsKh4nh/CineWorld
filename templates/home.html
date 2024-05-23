@@ -21,12 +21,6 @@
       type="text/css"
       href="{{ url_for('static',filename='styles.css') }}"
     />
-
-    <script type="text/javascript">
-      var films = {{suggestions|tojson}};
-      $(document).ready(function(){
-      });
-    </script>
   </head>
 
   <body id="content">
