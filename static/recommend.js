@@ -1,4 +1,4 @@
-var myAPI = '6b494c120a5b63392092caf68cfa7687'; // TMDB API key
+var myAPI = '5e548f230ff960a2f487d750bb068efc'; // TMDB API key
 
 $(function() {
   $('#movie_list').css('display', 'none');
@@ -37,11 +37,13 @@ $(function() {
     }
   );
 
-  $('#recommend-button-jump').click(function() {
+  $(document).on('click', '#recommend-button-jump', function() {
     var recommendedMoviesPosition = $('.movie-rec').offset().top;
     $('html, body').animate({
       scrollTop: recommendedMoviesPosition
     }, 1000);
+  });
+  
   });
 
   // Điều hướng khi click vào logo
@@ -67,7 +69,6 @@ $(function() {
       load_details(my_api_key,title,true);
     }
   });
-});
 
 function recommendcard(id){
   $("#loader").fadeIn();

@@ -31,17 +31,6 @@ def convert_to_list_num(my_list):
 
 app = Flask(__name__)
 
-myAPI = "6b494c120a5b63392092caf68cfa7687"  # TMDB API key
-
-
-def get_movie_details(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={myAPI}"
-    response = requests.get(url)
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
-
 
 def get_suggestions():
     data = pd.read_csv("datasets/main_data.csv")
@@ -61,30 +50,24 @@ def data_collect():
     res = json.loads(request.get_data("data"))
     movies_list = res["movies_list"]
 
-    movie_cards = {}
-    for movie_item in movies_list:
-        movie_id = movie_item["id"]
-        movie_details = get_movie_details(movie_id)
-        if movie_details:
-            poster_path = movie_details.get("poster_path", "")
-            poster = (
-                f"https://image.tmdb.org/t/p/original{poster_path}"
-                if poster_path
-                else "/static/movie_placeholder.jpeg"
-            )
-            movie_cards[poster] = [
-                movie_details.get("title", ""),
-                movie_details.get("original_title", ""),
-                movie_details.get("vote_average", ""),
-                (
-                    datetime.strptime(
-                        movie_details.get("release_date", ""), "%Y-%m-%d"
-                    ).year
-                    if movie_details.get("release_date")
-                    else "N/A"
-                ),
-                movie_id,
-            ]
+    movie_cards = {
+        (
+            "https://image.tmdb.org/t/p/original" + movies_list[i]["poster_path"]
+            if movies_list[i]["poster_path"]
+            else "/static/movie_placeholder.jpeg"
+        ): [
+            movies_list[i]["title"],
+            movies_list[i]["original_title"],
+            movies_list[i]["vote_average"],
+            (
+                datetime.strptime(movies_list[i]["release_date"], "%Y-%m-%d").year
+                if movies_list[i]["release_date"]
+                else "N/A"
+            ),
+            movies_list[i]["id"],
+        ]
+        for i in range(len(movies_list))
+    }
 
     return render_template("recommend.html", movie_cards=movie_cards)
 
