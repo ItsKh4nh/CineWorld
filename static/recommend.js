@@ -24,10 +24,6 @@ $(function() {
     }
   });
 
-  $('.fa-arrow-up').click(function(){
-    $('html, body').animate({scrollTop:0}, 'slow');
-  });
-
   $('.logo').hover(
     function() {
       $(this).css('cursor', 'pointer');
@@ -246,9 +242,15 @@ function show_details(movie_details,movie_title,my_api_key,movie_id,movie_title_
       $('#autoComplete').val('');
       $('.footer').css('position','absolute');
       if ($('.col-md-12')) {
-        $('.col-md-12').after('<div class="gototop"><i title="Go to Top" class="fa fa-arrow-up"></i></div>');
+        if (!$('.gototop').length) {
+          $('.col-md-12').after('<div class="gototop"><i title="Go to Top" class="fa fa-arrow-up"></i></div>');
+        }
+        $(window).scrollTop(0);
+
+        $('.gototop').on('click', function() {
+          $('html, body').animate({scrollTop: 0}, 'slow');
+        });
       }
-      $(window).scrollTop(0);
     }
   });
 }
